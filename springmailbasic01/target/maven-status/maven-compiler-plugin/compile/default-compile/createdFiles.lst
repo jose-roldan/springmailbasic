@@ -1,0 +1,8 @@
+ar\com\egomusic\springmailbasic01\Exceptions\MailExceptionHandler.class
+ar\com\egomusic\springmailbasic01\SpringMailBasic01Application.class
+ar\com\egomusic\springmailbasic01\model\MailModelDTO.class
+ar\com\egomusic\springmailbasic01\config\CorsConfig.class
+ar\com\egomusic\springmailbasic01\service\SendingEmailService.class
+ar\com\egomusic\springmailbasic01\controller\SendEmailController.class
+ar\com\egomusic\springmailbasic01\service\impl\SendingEmailServiceImpl.class
+ar\com\egomusic\springmailbasic01\config\FreemarkerConfig.class
