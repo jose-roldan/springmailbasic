@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.util.Base64;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import lombok.extern.log4j.Log4j2;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Component;
 
+@Log4j2
 @Component
 public class EmailSender {
 
@@ -60,8 +63,7 @@ public class EmailSender {
 
         try {
             mailSender.send(preparator);
-
-            System.out.println("Email sending complete.");
+            log.info("Email sending complete.");
         } catch (Exception e) {
             e.printStackTrace();
         }
