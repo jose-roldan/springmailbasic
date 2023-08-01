@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Formulario de atualização</title>
+    </head>
+    <body>
+        <h1>Formulario de atualização</h1>
+        <form action="/BasicCRUDMaven/FrontController">
+            <input name="form" value="updateServlet" type="hidden">
+            Nome anterior: <input name="formerName" value="" type="text"><br>
+            Novo nome: <input name="name" value="" type="text"><br>
+            Novo endereço <input name="address" value="" type="text"><br>
+            Novo telefone: <input name="phone" value="" type="text"><br>
+            Nova idade: <input name="age" value="" type="text"><br>
+            Novo nível de amizade:
+            <select name="friendshipLevel"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
+            <br>
+            Novo comentários: <textarea name="comments" rows="4" cols="20"> </textarea>
+            <br>
+            <button>Enviar</button> 
+        </form>
+    </body>
+</html>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <!--Nuestro Servlet FrontController va a recibir todas las peticiones que vayan a un Servlet-->
+    <servlet>
+        <servlet-name>FrontController</servlet-name>
+        <servlet-class>ar.com.egomusic.basiccrudmaven.controller.FrontController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FrontController</servlet-name>
+        <url-pattern>/FrontController</url-pattern>
+    </servlet-mapping>
+    <!--Configuracion del pool de conexiones-->
+    <resource-ref>
+        <res-ref-name>jdbc/myfriends</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+    <!--Parametros del contexto para configurar la aplicacion-->
+    <!--Cambiando este parametro usamos la pantalla de exito cutre en vez de la menos cutre-->
+    <!---->
+    <context-param>
+        <param-name>successForm</param-name>
+        <param-value>/WEB-INF/view/successJSP.jsp</param-value>
+    </context-param>
+    <!---->
+    <!--->context-param>
+        <param-name>successForm</param-name>
+        <param-value>/view/successForm.html</param-value>
+    </context-param><!-->
+    <!--Dejo como ejercicio para el lector hacer una pantalla de error menos cutre-->
+    <context-param>
+        <param-name>errorForm</param-name>
+        <param-value>/error.html</param-value>
+    </context-param>
+    <context-param>
+        <param-name>mainForm</param-name>
+        <param-value>/index.html</param-value>
+    </context-param>
+    <context-param>
+        <param-name>createServlet</param-name>
+        <param-value>createServlet</param-value>
+    </context-param>
+    <context-param>
+        <param-name>readServlet</param-name>
+        <param-value>readServlet</param-value>
+    </context-param>
+    <context-param>
+        <param-name>deleteServlet</param-name>
+        <param-value>deleteServlet</param-value>
+    </context-param>
+    <context-param>
+        <param-name>updateServlet</param-name>
+        <param-value>updateServlet</param-value>
+    </context-param>
+    <context-param>
+        <param-name>displayForm</param-name>
+        <param-value>/WEB-INF/view/displayForm.jsp</param-value>
+    </context-param>
+    <!--Este parmetroConfigura el tipo de persistencia; sus posibles valores son
+    pool: usa el pool de persistencia (que tiene que estar configurado el servidor de aplicaciones)
+    JDBC: usa JDBC directamente; es necesario especificar la URL de la base de datos, el driver el usuario y el password
+    file: usa un fichero; en este caso databaseURL es el nombre del fichero-->
+    <context-param>
+        <param-name>persistenceMechanism</param-name>
+        <param-value>file</param-value>
+    </context-param>
+    <!--Comienzo de la configuracin de la configuracion de la base de datos jdbc:derby://localhost:1527/myfriends-->
+    <context-param>
+        <param-name>databaseURL</param-name>
+        <param-value>filename</param-value>
+    </context-param>
+    <context-param>
+        <param-name>databaseDriver</param-name>
+        <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>databasePassword</param-name>
+        <param-value>friend</param-value>
+    </context-param>
+    <context-param>
+        <param-name>databaseUser</param-name>
+        <param-value>friend</param-value>
+    </context-param>
+    <!--Listener de inicializacion-->
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>ar.com.egomusic.basiccrudmaven.controller.StartUpListener</listener-class>
+    </listener>
+    <error-page>
+        <error-code>404</error-code>
+        <!--En este caso, el recurso va a ser una página HTML estatica-->
+        <location>/error.html</location>
+    </error-page>
+    <!--Declaramos el recurso que va a gestionar errores http 500-->
+    <error-page>
+        <error-code>500</error-code>
+        <!--En este caso, el recurso va a ser una página HTML estatica-->
+        <location>/error.html</location>
+    </error-page>
+    <!--Declaramos el recurso que va a gestionar NullPointerExceptions en el codigo Java-->
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <!--En este caso, el recurso va a ser Servlet-->
+        <location>/error.html</location>
+    </error-page>
+    <!--Servlets de la aplicacion-->
+    <servlet>
+        <servlet-name>createServlet</servlet-name>
+        <servlet-class>ar.com.egomusic.basiccrudmaven.controller.CreateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyCoolServlet</servlet-name>
+        <servlet-class>ar.com.egomusic.basiccrudmaven.controller.MyCoolServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteServlet</servlet-name>
+        <servlet-class>ar.com.egomusic.basiccrudmaven.controller.DeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateServlet</servlet-name>
+        <servlet-class>ar.com.egomusic.basiccrudmaven.controller.UpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>readServlet</servlet-name>
+        <servlet-class>ar.com.egomusic.basiccrudmaven.controller.ReadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createServlet</servlet-name>
+        <url-pattern>/createServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteServlet</servlet-name>
+        <url-pattern>/deleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateServlet</servlet-name>
+        <url-pattern>/updateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>readServlet</servlet-name>
+        <url-pattern>/readServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>JDBCServlet</servlet-name>
+        <servlet-class>persistence.JDBCServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JDBCServlet</servlet-name>
+        <url-pattern>/JDBCServlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+</web-app>
